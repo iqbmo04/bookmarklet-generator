@@ -1,0 +1,25 @@
+.CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+  min-height: 450px;
+}
+
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+a#bookmarklet {
+  margin-top: 20px;
+  width: auto;
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #800004;
+  background: transparent;
+  color: #800004;
+  text-transform: uppercase;
+}

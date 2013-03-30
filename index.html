@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror/theme/night.css">
+    <link rel="stylesheet" href="codemirror/doc/docs.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+    <script src="codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="codemirror/addon/edit/continuecomment.js"></script>
+</head>
+<body>
+
+<a href="https://github.com/gherkins/bookmarklet-generator"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+<h2>bookmarklet generator</h2>
+
+<form>
+    <textarea id="code" name="code">
+(function(){
+
+    // the minimum version of jQuery we want
+    var v = "1.8";
+
+    // check prior inclusion and version
+    if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
+        var done = false;
+        var script = document.createElement("script");
+        script.src = "//ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js";
+        script.onload = script.onreadystatechange = function(){
+        if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
+            done = true;
+            initMyBookmarklet();
+        }
+    };
+    document.getElementsByTagName("head")[0].appendChild(script);
+    } else {
+        initMyBookmarklet();
+    }
+
+    function initMyBookmarklet() {
+        (window.myBookmarklet = function() {
+            // your JavaScript code goes here!
+        })();
+    }
+
+})();
+
+    </textarea>
+</form>
+
+<a id="bookmarklet" href="">
+    drag into your bookmark-toolbar
+</a>
+
+<script type="text/javascript">
+    $(function () {
+
+        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            matchBrackets: true,
+            extraKeys: {
+                "Enter": "newlineAndIndentContinueComment"
+            }
+        });
+
+        $('a#bookmarklet').on('mousedown', function () {
+            editor.save();
+            var value = encodeURI($('textarea#code').val());
+            $('a#bookmarklet').attr('href', "javascript:" + value)
+        });
+
+    });
+</script>
+</body>
