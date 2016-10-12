@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="codemirror/theme/night.css">
     <link rel="stylesheet" href="codemirror/doc/docs.css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
     <script src="codemirror/lib/codemirror.js"></script>
     <script src="codemirror/mode/javascript/javascript.js"></script>
     <script src="codemirror/addon/edit/matchbrackets.js"></script>
@@ -25,14 +25,11 @@
     <textarea id="code" name="code">
 (function(){
 
-    // the minimum version of jQuery we want
-    var v = "1.9";
-
     // check prior inclusion and version
     if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
         var done = false;
         var script = document.createElement("script");
-        script.src = "//ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js";
+        script.src = "//code.jquery.com/jquery-latest.min.js";
         script.onload = script.onreadystatechange = function(){
         if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
             done = true;
@@ -46,7 +43,9 @@
 
     function initMyBookmarklet() {
         (window.myBookmarklet = function() {
-            // your JavaScript code goes here!
+           
+           //PUT YOUR JS CODE HERE AND DRAG THE BUTTON BELOW TO YOUR BOOKMARKS                                                  
+                                                                   
         })();
     }
 
